@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedWave Internet | Unlimited Fiber</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .speed-gauge-container {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 420px;
+            width: 100%;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        .speed-bar-outer {
+            height: 16px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .speed-bar-inner {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #00f2fe);
+            border-radius: 8px;
+            transition: width 0.1s ease-out;
+        }
+        .toggle-switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 32px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: .3s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(28px);
+        }
+        .discount-badge {
+            background-color: #ec4899;
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header class="top sticky-top navbar navbar-expand-lg navbar-dark" style="background-color: #090723; padding: 15px 30px;">
+        <div class="container-fluid p-0">
+            <a href="index.html" class="logo-text">
+                Speed<span class="blue">Wave</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="menu navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="htmls/residential.html" class="nav-link">Residential</a></li>
+                    <li class="nav-item"><a href="htmls/business.html" class="nav-link">Business</a></li>
+                    <li class="nav-item"><a href="htmls/check.html" class="nav-link">Check Availability</a></li>
+                    <li class="nav-item"><a href="htmls/payment.html" class="nav-link">Payment</a></li>
+                    <li class="nav-item"><a href="htmls/support.html" class="nav-link">Support</a></li>
+                    <li class="nav-item"><a href="htmls/about.html" class="nav-link">About us</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="showcase-section">
+            <div class="container">
+                <div class="row align-items-center text-start">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <h1 class="display-4 fw-bold">Unlimited fiber, effortlessly fast</h1>
+                        <p class="lead">Up to 1 Gbps ultra-high speed fiber. Perfect for reliable streaming, seamless gaming, and productive remote work.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="htmls/residential.html" class="sign-up-button mt-0 px-4 py-3" style="font-size: 16px;">Explore Packages</a>
+                            <a href="htmls/check.html" class="btn btn-outline-light px-4 py-3" style="border-radius: 30px; font-weight: 600;">Check Coverage</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-flex flex-column align-items-center">
+                        <img src="images/Untitled design.png" alt="Fiber optic cables" class="showcase-image w-100" style="max-width: 480px; object-fit: cover;">
+                        
+                        <div class="speed-gauge-container p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <span class="text-white-50 font-monospace" style="font-size: 14px;">LIVE FIBER SPEED</span>
+                                <span id="speed-indicator" class="fw-bold text-info font-monospace" style="font-size: 18px;">0 Mbps</span>
+                            </div>
+                            <div class="speed-bar-outer mb-3">
+                                <div id="speed-progress" class="speed-bar-inner"></div>
+                            </div>
+                            <button id="simulate-btn" class="btn btn-sm btn-info w-100 fw-bold py-2" style="border-radius: 12px; color: #090723;">Simulate SpeedWave Speed</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container mt-5 text-center">
+            <div class="toggle-switch-wrapper">
+                <span class="fw-semibold" style="color: #64748b;">Monthly Billing</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="billing-cycle-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span class="fw-semibold" style="color: #0f172a;">Annual Billing</span>
+                <span class="discount-badge">Save 15%</span>
+            </div>
+            
+            <div class="pricing">
+                <div class="card">
+                    <h3>Package A (Basic)</h3>
+                    <div class="price" id="price-a">p350<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span></div>
+                    <p>100 Mbps Unlimited Data</p>
+                    <a href="htmls/payment.html?plan=basic" class="sign-up-button">Sign up</a>
+                </div>
+                <div class="card" style="border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 10px 30px rgba(59, 130, 246, 0.05);">
+                    <div class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-3 py-2" style="font-size: 11px; letter-spacing: 0.5px;">MOST POPULAR</div>
+                    <h3>Package B (Popular)</h3>
+                    <div class="price" id="price-b">p500<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span></div>
+                    <p>500 Mbps Unlimited Data</p>
+                    <a href="htmls/payment.html?plan=popular" class="sign-up-button">Sign up</a>
+                </div>
+                <div class="card">
+                    <h3>Package C (Pro)</h3>
+                    <div class="price" id="price-c">p750<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span></div>
+                    <p>1 Gbps Ultra Fast Fiber</p>
+                    <a href="htmls/payment.html?plan=pro" class="sign-up-button">Sign up</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="why">
+            <h2>Why SpeedWave?</h2>
+            <ul>
+                <li>Stream, game, and download as much as you want with true unlimited data.</li>
+                <li>Highly responsive, local customer support team available 24/7.</li>
+                <li>Free premium WiFi 6 router and professional fiber optic installation.</li>
+            </ul>
+            <p>Future-ready internet connections built on premium infrastructure. That is the SpeedWave promise.</p>
+        </section>
+    </main>
+
+    <footer class="bottom">
+        <div class="container text-center">
+            <p class="copyright">&copy; 2026 SpeedWave Internet | Email: support@speedwave.com.bw | Tel: +267 77757671</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('simulate-btn').addEventListener('click', function() {
+            const btn = this;
+            const progress = document.getElementById('speed-progress');
+            const indicator = document.getElementById('speed-indicator');
+            btn.disabled = true;
+            btn.innerText = 'Testing Connection...';
+            
+            let speed = 0;
+            const interval = setInterval(() => {
+                speed += Math.floor(Math.random() * 45) + 5;
+                if (speed >= 1000) {
+                    speed = 1000;
+                    clearInterval(interval);
+                    btn.innerText = 'Re-run Speed Test';
+                    btn.disabled = false;
+                }
+                progress.style.width = (speed / 10) + '%';
+                indicator.innerText = speed + ' Mbps';
+            }, 30);
+        });
+
+        document.getElementById('billing-cycle-toggle').addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const priceA = document.getElementById('price-a');
+            const priceB = document.getElementById('price-b');
+            const priceC = document.getElementById('price-c');
+            
+            if (isAnnual) {
+                priceA.innerHTML = 'p295<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span> <small style="display:block; font-size:11px; color:#22c55e;">billed annually</small>';
+                priceB.innerHTML = 'p425<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span> <small style="display:block; font-size:11px; color:#22c55e;">billed annually</small>';
+                priceC.innerHTML = 'p635<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span> <small style="display:block; font-size:11px; color:#22c55e;">billed annually</small>';
+            } else {
+                priceA.innerHTML = 'p350<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>';
+                priceB.innerHTML = 'p500<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>';
+                priceC.innerHTML = 'p750<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>';
+            }
+        });
+    </script>
+</body>
+</html>
