@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residential Fiber | SpeedWave Internet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .page-header-banner {
+            background: linear-gradient(135deg, #090723 0%, #1e1b4b 100%);
+            padding: 60px 20px;
+            color: white;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 40px;
+        }
+        .toggle-switch-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 32px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: .3s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(28px);
+        }
+        .discount-badge {
+            background-color: #ec4899;
+            color: white;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header class="top sticky-top navbar navbar-expand-lg navbar-dark" style="background-color: #090723; padding: 15px 30px;">
+        <div class="container-fluid p-0">
+            <a href="../index.html" class="logo-text">
+                Speed<span class="blue">Wave</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="mainNavbar">
+                <ul class="menu navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="residential.html" class="nav-link active">Residential</a></li>
+                    <li class="nav-item"><a href="business.html" class="nav-link">Business</a></li>
+                    <li class="nav-item"><a href="check.html" class="nav-link">Check Availability</a></li>
+                    <li class="nav-item"><a href="payment.html" class="nav-link">Payment</a></li>
+                    <li class="nav-item"><a href="support.html" class="nav-link">Support</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link">About us</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header-banner">
+        <div class="container">
+            <h1 class="display-5 fw-bold text-white mb-2">Residential Fiber Packages</h1>
+            <p class="lead text-white-50" style="max-width: 600px; margin: 0 auto;">Blazing-fast speeds for your home. Choose the perfect plan for streaming, gaming, and remote work.</p>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="toggle-switch-wrapper">
+            <span class="fw-semibold" style="color: #64748b;">Monthly Billing</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="billing-cycle-toggle">
+                <span class="slider"></span>
+            </label>
+            <span class="fw-semibold" style="color: #0f172a;">Annual Billing</span>
+            <span class="discount-badge">Save 15%</span>
+        </div>
+
+        <div class="packages row justify-content-center g-4 p-0 mb-5">
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="package card w-100">
+                    <div>
+                        <h3>Basic</h3>
+                        <div class="price text-primary fw-bold" id="price-basic" style="font-size: 36px; font-family: 'Outfit', sans-serif;">p350<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span></div>
+                        <p class="fw-semibold text-dark mt-2" style="font-size: 18px;">100 Mbps</p>
+                        <p class="text-secondary" style="font-size: 14px;">Best for reliable web browsing, active social media, and HD video streaming on a few devices.</p>
+                    </div>
+                    <a href="payment.html?plan=basic" class="sign-up-button">Sign up</a>
+                </div>
+            </div>
+            
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="package card w-100" style="border-color: rgba(59, 130, 246, 0.4); position: relative; box-shadow: 0 10px 30px rgba(59, 130, 246, 0.05);">
+                    <div class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary px-3 py-2" style="font-size: 11px; letter-spacing: 0.5px;">RECOMMENDED</div>
+                    <div>
+                        <h3>Popular</h3>
+                        <div class="price text-primary fw-bold" id="price-popular" style="font-size: 36px; font-family: 'Outfit', sans-serif;">p500<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span></div>
+                        <p class="fw-semibold text-dark mt-2" style="font-size: 18px;">500 Mbps</p>
+                        <p class="text-secondary" style="font-size: 14px;">Great for busy, active households streaming 4K movies, competitive gaming, and Zoom calls simultaneously.</p>
+                    </div>
+                    <a href="payment.html?plan=popular" class="sign-up-button">Sign up</a>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="package card w-100">
+                    <div>
+                        <h3>Pro</h3>
+                        <div class="price text-primary fw-bold" id="price-pro" style="font-size: 36px; font-family: 'Outfit', sans-serif;">p750<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span></div>
+                        <p class="fw-semibold text-dark mt-2" style="font-size: 18px;">1 Gbps</p>
+                        <p class="text-secondary" style="font-size: 14px;">Gigabit connection for heavy smart homes, large file transfers, creators, and zero-compromise connectivity.</p>
+                    </div>
+                    <a href="payment.html?plan=pro" class="sign-up-button">Sign up</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center bg-white p-4 rounded-4 shadow-sm border border-light mb-5" style="max-width: 600px; margin: 0 auto;">
+            <p class="mb-3 fw-semibold text-dark">All residential packages include unlimited high-speed data and a state-of-the-art WiFi 6 router.</p>
+            <a href="check.html" class="btn btn-primary px-4 py-2" style="border-radius: 30px; font-weight: 600;">Check Your Coverage</a>
+        </div>
+    </main>
+
+    <footer class="bottom mt-5">
+        <div class="container text-center">
+            <p class="copyright">&copy; 2026 SpeedWave Internet | Email: support@speedwave.com.bw | Tel: +267 77757671</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('billing-cycle-toggle').addEventListener('change', function() {
+            const isAnnual = this.checked;
+            const priceBasic = document.getElementById('price-basic');
+            const pricePopular = document.getElementById('price-popular');
+            const pricePro = document.getElementById('price-pro');
+            
+            if (isAnnual) {
+                priceBasic.innerHTML = 'p295<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span> <small style="display:block; font-size:11px; color:#22c55e;">billed annually</small>';
+                pricePopular.innerHTML = 'p425<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span> <small style="display:block; font-size:11px; color:#22c55e;">billed annually</small>';
+                pricePro.innerHTML = 'p635<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span> <small style="display:block; font-size:11px; color:#22c55e;">billed annually</small>';
+            } else {
+                priceBasic.innerHTML = 'p350<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>';
+                pricePopular.innerHTML = 'p500<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>';
+                pricePro.innerHTML = 'p750<span style="font-size: 14px; font-weight: 500; color: #64748b;">/mo</span>';
+            }
+        });
+    </script>
+</body>
+</html>
